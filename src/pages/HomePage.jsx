@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getStudents, createStudent, updateStudent, deleteStudent } from '../api/studentApi'
+import { EyeIcon, PencilSquareIcon, TrashIcon, PlusIcon } from '@heroicons/react/24/solid';
 
 function HomePage() {
   const [students, setStudents] = useState([]);
@@ -90,9 +91,15 @@ const studentDetails = () => {
                 </td>
                 <td>{student.name}</td>
                 <td>{student.course}</td>
-                <td >
-                  <button className='hover:cursor-pointer ' onClick={() => handleEditStudentd(student.id)}>Edit</button>
-                  <button className='hover:cursor-pointer' onClick={() => handleDeleteStudent(student.id)}>Delete</button>
+                <td className="p-3 flex gap-3">
+                  <PencilSquareIcon
+                      className="h-5 w-5 text-yellow-500 hover:text-yellow-700 cursor-pointer"
+                      onClick={() => handleEditStudentd(student.id)}
+                    />
+                    <TrashIcon
+                      className="h-5 w-5 text-red-500 hover:text-red-700 cursor-pointer"
+                      onClick={() => handleDeleteStudent(student.id)}
+                    />
                 </td>
               </tr>
             ))}
