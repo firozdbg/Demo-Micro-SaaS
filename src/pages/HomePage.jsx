@@ -1,8 +1,22 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getStudents, createStudent, updateStudent, deleteStudent } from '../api/studentApi'
 
 function HomePage() {
+  const [students, setStudents] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getStudents()
+      .then((res) => {
+        console.log("Fetched Students:", res.data);
+        setStudents(res.data);
+      })
+      .catch((err) => {
+        console.error('Fetch error:', err);
+      });
+  }, []);
 
   const addStudent = () => {
     // Logic to add a student can be implemented here
@@ -59,26 +73,24 @@ const studentDetails = () => {
               </tr>
             </thead>
             <tbody>
-              {/* Example row, replace with dynamic data */}
-              <tr className='h-14'>
-                <td >1</td>
-                <td >
-                  <img src="https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGV2ZWxvcGVyfGVufDB8fDB8fHww" alt="Student" className="w-12 h-12 rounded-full" />
+            {Array.isArray(students) && students.map((student) => (
+              <tr key={student.id}>
+                <td>{student.id}</td>
+                <td> <img
+                  src={student.profileImageUrl}
+                  alt={student.name}
+                  className="w-16 h-16 object-cover rounded-full"
+                />
                 </td>
-                <td >John Doe</td>
-                <td>Cse</td>
-                <td >
-                  <ul className='flex gap-2 hover:cursor-pointer text-teal-900'>
-                    <li onClick={studentDetails}>view</li>
-                    <li onClick={editStudent}>edit</li>
-                    <li onClick={deleteStudent}>delete</li>
-                 </ul>
+                <td>{student.name}</td>
+                <td>{student.course}</td>
+                <td>
+                  <button onClick={() => handleEditStudent(student.id)}>Edit</button>
+                  <button onClick={() => handleDeleteStudent(student.id)}>Delete</button>
                 </td>
               </tr>
-
-             
-
-            </tbody>
+            ))}
+          </tbody>
           </table>
         </div>
        
