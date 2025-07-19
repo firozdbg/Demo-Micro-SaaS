@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getDatabase } from 'firebase/database';
 import { storage } from '../firebase.js'; // Adjust the import based on your firebase configuration
 import { useForm } from 'react-hook-form';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
+import {createStudent} from '../api/studentApi.js'; // Adjust the import based on your API setup
 function AddStudent() {
   const navigate = useNavigate();
   const [imageURL, setImageURL] = useState("");
@@ -27,31 +27,42 @@ function AddStudent() {
       return null;
     }
   };
-console.log(imageURL);
+  console.log(imageURL);
+  
+
   const studentRegistration = async (data) => {
     let uploadedImageURL = "";
     if (data.image && data.image[0]) {
       uploadedImageURL = await handleUpload(data.image[0]);
     }
 
-    // console.log(data.image[0]);
-    // console.log({ ...data, imageURL: uploadedImageURL });
+    // Prepare student data
+    const studentData = {
+      name: data.name,
+      email: data.email,
+      course: data.course,
+      profileImageUrl: uploadedImageURL,
+    };
 
-    // Here you can handle the rest of the registration logic
-    setSuccess(true);
-    reset();
-    // Optionally, navigate or do more here
-    
+    // Send to API
+    try {
+      await createStudent(studentData);
+      setSuccess(true);
+      reset();
+    } catch (error) {
+      alert('Failed to add student');
+      console.error(error);
+    }
   };
 
   return (
  
 
-    <div className="min-h-screen flex flex-col bg-yellow-300 m-4">
+    <div className="min-h-screen flex flex-col bg-gray-200 m-4">
       {/* Header */}
       <header className="text-black bg-amber-200 h-15 flex items-center">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-blue-600">Demo Micro SaaS Tuition Center</h1>
+<a href='/' className="text-2xl font-bold text-blue-600">Demo Micro SaaS Tuition Center</a>
         </div>
       </header>
 
