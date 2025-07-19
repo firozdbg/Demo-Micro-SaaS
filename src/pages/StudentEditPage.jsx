@@ -63,9 +63,9 @@ function StudentEditPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-200 m-4">
+    <div className="min-h-screen flex flex-col bg-gray-50 m-4">
       {/* Header */}
-      <header className="text-black bg-amber-200 h-15 flex items-center">
+      <header className="text-black bg-amber-100 h-15 flex items-center">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <a href='/' className="text-2xl font-bold text-blue-600">Demo Micro SaaS Tuition Center</a>
         </div>
@@ -73,7 +73,7 @@ function StudentEditPage() {
 
       {/* Edit Student Form */}
       <main className="flex-1 flex items-center justify-center">
-        <form onSubmit={handleSubmit(studentRegistration)} className="bg-white rounded-lg shadow-md p-8 w-full max-w-md h-auto ">
+        <form onSubmit={handleSubmit(studentRegistration)} className="bg-gray-150 rounded-lg shadow-md p-8 w-full max-w-md h-auto ">
           <h2 className="text-2xl font-bold mb-6 text-blue-600">Edit Student</h2>
           {success && <div className="mb-4 text-green-600 font-semibold">Student updated successfully!</div>}
           <div className="mb-4 text-left">

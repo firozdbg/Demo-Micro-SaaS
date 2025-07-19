@@ -44,9 +44,9 @@ const studentDetails = () => {
     navigate('/student/1');
   }
 
-  return (<div className="min-h-screen flex flex-col bg-yellow-300 m-4">
+  return (<div className="min-h-screen flex flex-col m-4">
       {/* Header */}
-      <header className="text-black bg-amber-200 h-15 flex items-center">
+      <header className="text-black bg-amber-100 h-15 flex items-center">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <a href='/' className="text-2xl font-bold text-blue-600">Demo Micro SaaS Tuition Center</a>
           <nav>
@@ -60,14 +60,14 @@ const studentDetails = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="flex-1 flex flex-col  items-center bg-amber-950 justify-start m-8">
-      <h1 className="text-white text-3xl mt-4">Student Dashboard</h1>
+      <section className="flex-1 flex flex-col  items-center justify-start m-8">
+      <h1 className="text-black text-3xl mt-4">Student Dashboard</h1>
       
       <div className="w-full p-4 text-xl h-auto flex flex-col items-center ">
         <div className='w-3/4 h-15 flex items-center justify-end '>
          <h1 onClick={addStudent} className='bg-blue-500 h-10 w-55 flex items-center justify-center hover:cursor-pointer' >Add Student</h1>
         </div>
-         <div className='w-3/4 bg-amber-200  h-auto flex items-center '>
+         <div className='w-3/4  h-auto flex items-center '>
           <table className='w-full text-left border-collapse'>
             <thead className="bg-gray-100 w-full" >
               <tr className='h-11'>
@@ -112,8 +112,8 @@ const studentDetails = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-gray-200 py-4 text-center">
-        &copy; {new Date().getFullYear()} MyHomePage. All rights reserved.
+      <footer className="bg-gray-600 text-gray-200 py-4 text-center">
+        &copy; {new Date().getFullYear()} Micro SaaS. All rights reserved.
       </footer>
     </div>
 
